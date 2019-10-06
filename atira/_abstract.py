@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+import bs4
 import time
 
 HEADERS = {
@@ -10,7 +10,7 @@ HEADERS = {
 class AbstractScraper():
 
     def __init__(self, url, test=False):
-        self.soup = BeautifulSoup(
+        self.soup = bs4.BeautifulSoup(
             requests.get(
                 url,
                 headers=HEADERS
