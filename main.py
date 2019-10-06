@@ -19,9 +19,7 @@ for links in appartment_links:
     for link in links:
         appartment_info = {}
         appar_info = AppartmentInfoScraper(link)
-        print(link)
         price = appar_info.get_price()
-        print(price)
         capcacity = appar_info.capacity_of_persons()
         room_name = appar_info.room_name()
         building_name = appar_info.building_name()
