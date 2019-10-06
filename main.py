@@ -1,5 +1,5 @@
 from appartments.atira.locations import LocationScraper
-from appartments.atira.locations import AppartmentScraper
+from appartments.atira.appartments import AppartmentScraper
 from appartments.atira.appartment_info import AppartmentInfoScraper
 
 url = "https://atira.com/locations/"
