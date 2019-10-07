@@ -1,0 +1,1 @@
+ATIRA_URL = 'https://atira.com/locations/'

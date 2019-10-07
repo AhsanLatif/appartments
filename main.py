@@ -1,13 +1,16 @@
 from appartments.atira.locations import LocationScraper
 from appartments.atira.appartments import AppartmentScraper
 from appartments.atira.appartment_info import AppartmentInfoScraper
+from appartments.constants import *
+import json
 
-url = "https://atira.com/locations/"
+url = ATIRA_URL
+objs_appartment = []
+appartment_links = []
 
 apar = LocationScraper(url)
 location_links = apar.get_location_links()
-objs_appartment = []
-appartment_links = []
+
 for link in location_links:
     objs_appartment.append(AppartmentScraper(link))
 
@@ -19,17 +22,11 @@ for links in appartment_links:
     for link in links:
         appartment_info = {}
         appar_info = AppartmentInfoScraper(link)
-        price = appar_info.get_price()
-        capcacity = appar_info.capacity_of_persons()
-        room_name = appar_info.room_name()
-        building_name = appar_info.building_name()
-        location = appar_info.location()
-        feature = appar_info.features()
-        appartment_info['price'] = price
-        appartment_info['capacity'] = capcacity
-        appartment_info['room_name'] = room_name
-        appartment_info['building_name'] = building_name
-        appartment_info['location'] = location
-        appartment_info['features'] = feature
+        appartment_info['price'] = appar_info.get_price()
+        appartment_info['capacity']  = appar_info.capacity_of_persons()
+        appartment_info['room_name'] = appar_info.room_name()
+        appartment_info['building_name'] = appar_info.building_name()
+        appartment_info['location'] = appar_info.location()
+        appartment_info['features'] = appar_info.features()
         appartments_info.append(appartment_info)
-print(appartments_info)
+print(json.dumps(appartments_info))
