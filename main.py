@@ -8,8 +8,8 @@ url = ATIRA_URL
 objs_appartment = []
 appartment_links = []
 
-apar = LocationScraper(url)
-location_links = apar.get_location_links()
+location = LocationScraper(url)
+location_links = location.get_location_links()
 
 for link in location_links:
     objs_appartment.append(AppartmentScraper(link))
