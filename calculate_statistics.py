@@ -27,6 +27,7 @@ for city_name, room in appartment.items():
         avg.append(avg_price)
         room_size.append(capacity)
         print(city_name + ": $" + str(round(avg_price,2)) + " for " + str(capacity) + " person room")
+#Create graphs
     plt.bar(room_size, avg)
     plt.title(city_name)
     plt.ylabel('Average Price')
