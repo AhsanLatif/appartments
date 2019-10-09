@@ -42,5 +42,16 @@ class AppartmentInfoScraper(AbstractScraper):
         x = re.search("(location-city-)(.*?)[\s]", str(html_city[0]))
         return x.group(0)[14:].strip()
 
+    def get_appartment(self):
+        appartment_info = {}
+        appartment_info['price'] = self.get_price()
+        appartment_info['capacity']  = self.capacity_of_persons()
+        appartment_info['room_name'] = self.room_name()
+        appartment_info['building_name'] = self.building_name()
+        appartment_info['location'] = self.location()
+        appartment_info['features'] = self.features()
+        appartment_info['city'] = self.city()
+        return appartment_info
+
     def save_all(self, data, format='csv'):
         super().save_all(data, format)
