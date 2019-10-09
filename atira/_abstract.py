@@ -1,33 +1,35 @@
 import requests
 import bs4
-import time
 import numpy as np
 from pathlib import Path
+from constants import *
+import csv
 
 
 class AbstractScraper():
 
-    def __init__(self, url):
-        user_agent = self.get_random_ua()
-        try:
-            HEADERS = {
-                'User-Agent': user_agent.replace('\n', ''),
-            }
-            self.soup = bs4.BeautifulSoup(
-                requests.get(
-                    url,
-                    headers=HEADERS
-                ).content,
-                "html.parser"
-            )
-        except Exception as ex:
-            print(str(ex))
+    def __init__(self, url=None):
+        if url is not None:
+            user_agent = self.get_random_ua()
+            try:
+                HEADERS = {
+                    'User-Agent': user_agent.replace('\n', ''),
+                }
+                self.soup = bs4.BeautifulSoup(
+                    requests.get(
+                        url,
+                        headers=HEADERS
+                    ).content,
+                    "html.parser"
+                )
+            except Exception as ex:
+                print(str(ex))
 
 
     def get_random_ua(self):
         random_ua = ''
-        data_folder = Path("appartments")
-        ua_file = data_folder / 'user_agents.txt'
+        data_folder = Path(ROOT_DIRECTORY)
+        ua_file = data_folder / USERAGENT_FILENAME
         try:
             with open(ua_file) as f:
                 lines = f.readlines()
@@ -37,7 +39,17 @@ class AbstractScraper():
                 idx = np.asarray(index, dtype=np.integer)[0]
                 random_ua = lines[int(idx)]
         except Exception as ex:
-            print('Exception in random_ua')
+            print(EXCEPTION_RANDOM_GENERATE)
             print(str(ex))
         finally:
             return random_ua
+
+    def save_all(self, data, format='csv'):
+        if (format == 'csv'):
+            data_folder = Path(ROOT_DIRECTORY)
+            with open(data_folder / APPARTMENTS_OUTPUT_FILE, 'w', newline='') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
+                writer.writeheader()
+                # Write CSV Header
+                for f in data:
+                    writer.writerow(f)
