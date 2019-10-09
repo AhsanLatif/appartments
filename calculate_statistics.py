@@ -17,12 +17,12 @@ with open(data_folder / APPARTMENTS_OUTPUT_FILE, newline='') as csvfile:
         appartment[row['city']][row['capacity']]['price'] += int(row['price'])
         appartment[row['city']][row['capacity']]['count'] += 1
 
-
 #Print stats for rooms
 for city_name, room in appartment.items():
     avg = []
     room_size = []
-    for capacity, v in room.items():
+    sorted(room.keys())
+    for capacity, v in sorted(room.items()):
         avg_price = v['price']/v['count']
         avg.append(avg_price)
         room_size.append(capacity)
