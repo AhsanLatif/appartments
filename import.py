@@ -1,6 +1,6 @@
-from appartments.atira.locations import LocationScraper
-from appartments.atira.appartments import AppartmentScraper
-from appartments.atira.appartment_info import AppartmentInfoScraper
+from atira.locations import LocationScraper
+from atira.appartments import AppartmentScraper
+from atira.appartment_info import AppartmentInfoScraper
 from constants import *
 import json
 
@@ -8,6 +8,7 @@ url = ATIRA_URL
 objs_appartment = []
 appartment_links = []
 
+print('Data Scrapping in Progress...')
 #Fetch all the links for the available buildings
 location = LocationScraper(url)
 location_links = location.get_location_links()
@@ -31,4 +32,5 @@ for links in appartment_links:
 appar_info = AppartmentInfoScraper()
 appar_info.save_all(appartments_info)
 
+print('Scrapping done.')
 # print(json.dumps(appartments_info))

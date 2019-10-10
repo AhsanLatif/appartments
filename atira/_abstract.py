@@ -28,8 +28,7 @@ class AbstractScraper():
 
     def get_random_ua(self):
         random_ua = ''
-        data_folder = Path(ROOT_DIRECTORY)
-        ua_file = data_folder / USERAGENT_FILENAME
+        ua_file = USERAGENT_FILENAME
         try:
             with open(ua_file) as f:
                 lines = f.readlines()

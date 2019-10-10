@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 
 data_folder = Path(ROOT_DIRECTORY)
 appartment = {}
-with open(data_folder / APPARTMENTS_OUTPUT_FILE, newline='') as csvfile:
+with open(APPARTMENTS_OUTPUT_FILE, newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         appartment.setdefault(row['city'], {})
