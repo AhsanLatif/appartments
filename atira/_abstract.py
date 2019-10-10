@@ -1,7 +1,6 @@
 import requests
 import bs4
 import numpy as np
-from pathlib import Path
 from constants import *
 import csv
 
@@ -45,8 +44,7 @@ class AbstractScraper():
 
     def save_all(self, data, format='csv'):
         if (format == 'csv'):
-            data_folder = Path(ROOT_DIRECTORY)
-            with open(data_folder / APPARTMENTS_OUTPUT_FILE, 'w', newline='') as csvfile:
+            with open(APPARTMENTS_OUTPUT_FILE, 'w', newline='') as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=self.fieldnames)
                 writer.writeheader()
                 # Write CSV Header

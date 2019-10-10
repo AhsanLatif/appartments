@@ -32,4 +32,4 @@ for city_name, room in appartment.items():
     plt.title(city_name)
     plt.ylabel('Average Price')
     plt.xlabel('Room Capacity')
-    plt.savefig(str(data_folder / city_name)+'.png')
+    plt.savefig(OUTPUT_DIRECTORY + '/' + city_name +'.png')
